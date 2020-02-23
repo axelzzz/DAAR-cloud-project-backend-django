@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'snippets.apps.SnippetsConfig',
     'pollsAPI.apps.PollsAPIConfig',
+    'bibliSearch.apps.BiblisearchConfig',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +82,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.postgresql',
+        #'NAME': '/var/lib/postgresql/10/main/base/17472',
+        #'USER': 'postgres',
+        #'PASSWORD': 'postgres',
+        #'HOST': 'localhost',
+        #'PORT': '5432',
     }
 }
 #DATABASES = {
