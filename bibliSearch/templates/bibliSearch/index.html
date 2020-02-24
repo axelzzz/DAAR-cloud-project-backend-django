@@ -1,11 +1,12 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'bibliSearch/style.css' %}" />
+<script src="../../static/bibliSearch/animations/engine.js"></script>
 
 <p>bibliS3arch</p>
 
-<div class="form">
-  <form action="{% url 'bibliSearch:searchWithTitle' %}" method="get">
+<div class="form_div">
+  <form id="form_search" action="{% url 'bibliSearch:searchWithTitle' %}" method="get">
     <!--{% csrf_token %}-->
     <input id="form_book_title" type="text" name="book_title"
     placeholder="Veuillez saisir un titre"
