@@ -2,7 +2,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from bibliSearchAPI import views
 
 router = routers.DefaultRouter()
 #router.register(r'users', views.UserViewSet)
@@ -11,7 +10,6 @@ router = routers.DefaultRouter()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #path('admin/', include('admin.site.urls')),
-    path('polls/', include('polls.urls')),
     path('pollsAPI', include('pollsAPI.urls')),
     path('bibliSearch/', include('bibliSearch.urls')),
     

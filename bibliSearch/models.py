@@ -1,3 +1,18 @@
 from django.db import models
 
-# Create your models here.
+class Book(models.Model):
+
+    def __init__(self, nameFile, title,
+                 author, postingDate, releaseDate, language) :
+
+        self.nameFile = nameFile
+        #self.bookFile = bookFile
+        self.title = title
+        self.author = author 
+        self.postingDate = postingDate 
+        self.releaseDate = releaseDate
+        self.language = language
+    
+    def print(self) :
+
+        return self.nameFile

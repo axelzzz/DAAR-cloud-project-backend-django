@@ -4,5 +4,5 @@ from . import views
 
 app_name = 'bibliSearch'
 urlpatterns = [
-    path('', views.searchPattern, name='searchPattern'),
+    path('', views.getBooks, name='getBooks'),
 ]
