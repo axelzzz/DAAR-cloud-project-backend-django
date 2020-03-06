@@ -20,6 +20,10 @@ public class Automate {
 		
 //		System.out.println( " \t Automate :  ");
 		
+		if (cpt >= nbLignes) {
+			cpt = 0;
+		}
+		
 		this.automata = new int[nbLignes][nbCol];
 		this.epsTransit = new int[nbLignes][nbLignes];		
 		this.isFinalState = new boolean[nbLignes];

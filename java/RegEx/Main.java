@@ -45,16 +45,12 @@ public class Main {
 	}
 
 	public static Automate epsilonAutomation(RegExTree ret, int cpt, int nbStates) {
-		// System.out.println("nb states "+nbStates);
 		if (ret == null) {
 			return null;
 		} else {
-//			System.out.println("in epsilonAutomation : ret.root="+ret.root+" isLeaf("+ret.root+")="+isLeaf(ret.root));
 			if (isLeaf(ret.root)) {
-				System.out.println( " \t isLeaf " );
 				return new Automate(nbStates, ret.root);
 			} else {
-				System.out.println( " \t NOTLeaf " );
 
 				RegExTree r1 = ret.subTrees.get(0);
 				RegExTree r2 = null;

@@ -6,10 +6,9 @@ import java.util.*;
 public class KMP {
 
 	public static ArrayList<String> Recherche(String keyword, String folder_path) throws Exception {
-		long startTime = System.currentTimeMillis();
 		ArrayList<String> result = new ArrayList<String>();
 
-		//S = ' ' + S + ' ';
+//		keyword = ' ' + keyword + ' '; // decommenter si c'est une recherche exacte/precise
 		int[] retenue = GetRetenue(keyword);
 
 		File file = new File(folder_path);
@@ -18,9 +17,8 @@ public class KMP {
 			if (list_files[i].isFile()) {
 				ArrayList<String> strList = readFile(list_files[i].getPath());
 				for (String str : strList) {
-					str = str.toLowerCase();
-					if (KMP(keyword, retenue, str)) {
-//						System.out.println(list_files[i].getPath()); 
+//					str = str.toLowerCase();	// decommenter si on ne respecte pas la casse
+					if (matchingAlgo(keyword, retenue, str)) {
 						result.add(list_files[i].getPath());
 						break;
 					}
@@ -28,8 +26,6 @@ public class KMP {
 			}
 		}
 
-		long endTime = System.currentTimeMillis();
-		System.out.println("KMP Temps utilise : " + (endTime - startTime) + "ms");
 		return result;
 	}
 
@@ -76,7 +72,7 @@ public class KMP {
 		return retenue;
 	}
 
-	private static boolean KMP(String keyword, int[] retenue, String texte) {
+	private static boolean matchingAlgo(String keyword, int[] retenue, String texte) {
 		int i = 0; // indice du texte
 		int j = 0; // indice du facteur
 

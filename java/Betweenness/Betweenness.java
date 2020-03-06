@@ -1,15 +1,8 @@
 package Betweenness;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,29 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import KMP.*;
-import IndexTable.EgrepIndexTable;
-import RegEx.*;
-
 public class Betweenness {
-
-	public static void main(String[] args) throws Exception {
-
-//		long t0 = System.currentTimeMillis();
-//
-////		ArrayList<HashMap<String, Integer>> list = GetFiles("testbeds");
-////		ArrayList<HashMap<String, Integer>> list = GetFiles("test");
-//		ArrayList<HashMap<String, Integer>> list = GetFilesFromObjFiles(10); // 5536
-//
-//		float matrice[][] = CalculateJaccardDistanceMatrix(list, 0.75);
-////
-//		Betweenness(matrice, list.size());
-//
-//		long t1 = System.currentTimeMillis();
-//
-//		System.out.println(t1 - t0 + "ms");
-
-	}
 
 	public static ArrayList<String> classement(ArrayList<String> paths_list, double seuil) throws Exception {
 		ArrayList<String> result = new ArrayList<String>();
@@ -54,54 +25,9 @@ public class Betweenness {
 
 		float matrice[][] = CalculateJaccardDistanceMatrix(hm_list, seuil);
 
-		result = Betweenness(matrice, paths_list);
+		result = index(matrice, paths_list);
 
 		return result;
-	}
-
-	private static ArrayList<HashMap<String, Integer>> GetFilesFromObjFiles(int num)
-			throws IOException, ClassNotFoundException {
-		ArrayList<HashMap<String, Integer>> files = new ArrayList<HashMap<String, Integer>>();
-
-		FileInputStream fis = null;
-		ObjectInputStream ois = null;
-		for (int i = 0; i < num; i++) {
-			File file = new File("HashMap/" + i + ".obj");
-			fis = new FileInputStream(file);
-			ois = new ObjectInputStream(fis);
-			HashMap<String, Integer> hm = (HashMap<String, Integer>) ois.readObject();
-			ois.close();
-			files.add(hm);
-		}
-
-		return files;
-	}
-
-	private static ArrayList<HashMap<String, Integer>> GetFiles(String path) throws Exception {
-		ArrayList<HashMap<String, Integer>> files = new ArrayList<HashMap<String, Integer>>();
-
-		File file = new File(path);
-		File[] tempList = file.listFiles();
-
-		for (int i = 0; i < tempList.length; i++) {
-			System.out.println(i);
-			if (tempList[i].isFile()) {
-				HashMap<String, Integer> hm = ReadFromFile(tempList[i].toString());
-				files.add(hm);
-
-//	    		File file1 = new File("HashMap/"+i+".obj");
-//	    		FileOutputStream fos = null;
-//	    		ObjectOutputStream oos = null;
-//	            fos = new FileOutputStream(file1);
-//	            oos = new ObjectOutputStream(fos);
-//	            oos.writeObject(hm);
-//	            oos.flush();
-//	            oos.close();
-			}
-		}
-
-		System.out.println("finished. files.size()=" + files.size());
-		return files;
 	}
 
 	private static HashMap<String, Integer> ReadFromFile(String filename) throws Exception {
@@ -202,9 +128,17 @@ public class Betweenness {
 		return matrice;
 	}
 
-	private static ArrayList<String> Betweenness(float matrice[][], ArrayList<String> paths_list) {
+	private static ArrayList<String> index(float matrice[][], ArrayList<String> paths_list) {
 		int size = paths_list.size();
 		ArrayList<String> result = new ArrayList<String>();
+		
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				System.out.print(matrice[i][j] + "\t");
+			}
+			System.out.println();
+		}
+		System.out.println();
 
 		ArrayList<String> Vertices = new ArrayList<String>();
 		for (int i = 0; i < size; i++) {
@@ -218,10 +152,19 @@ public class Betweenness {
 			for (int j = 0; j < size; j++) {
 				if (matrice[i][j] == 1) {
 					tmp.add(paths_list.get(j).toString());
+//					System.out.println(paths_list.get(i).toString());
 				}
 			}
 			Neighbor.add(tmp);
 		}
+		
+		for (int i = 0; i < size; i++) {
+			System.out.println(Vertices.get(i));
+			for (int j=0; j<Neighbor.get(i).size(); j++) {
+				System.out.println("\t"+Neighbor.get(i).get(j));
+			}
+		}
+		System.out.println();
 
 		float[] BetweennessCentrality = new float[Vertices.size()];
 		for (int i = 0; i < Vertices.size(); i++) {

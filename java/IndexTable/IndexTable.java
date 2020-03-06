@@ -202,7 +202,7 @@ public class IndexTable {
 						continue;
 
 					/* choisir de mettre en lower case ou pas, attention aux noms */
-					word = word.toLowerCase();
+//					word = word.toLowerCase();
 
 
 					/* on calcule les index dans la ligne ou se trouve le mot courant */

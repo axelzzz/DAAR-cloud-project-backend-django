@@ -115,7 +115,6 @@ public class RegEx {
 	}
 	
 	public static ArrayList<String> Recherche(String keyword, String folder_path){
-		long startTime = System.currentTimeMillis();
 		ArrayList<String> result = new ArrayList<String>();
 
 		// S = ' ' + S + ' ';
@@ -125,14 +124,11 @@ public class RegEx {
 		for (int i = 0; i < list_files.length; i++) {
 			if (list_files[i].isFile()) {
 				if (Automate(keyword, list_files[i].getPath())) {
-					System.out.println(" in RegEx Recherche : " + keyword + " is in " + list_files[i].getPath());
 					result.add(list_files[i].getPath());
 				}
 			}
 		}
 
-		long endTime = System.currentTimeMillis();
-		System.out.println("Automate Temps utilise : " + (endTime - startTime) + "ms");
 		return result;
 	}
 
@@ -144,19 +140,14 @@ public class RegEx {
 		} else {
 			try {
 				RegExTree ret = parse();
-				System.out.println( "\n here 111 ");
-				System.out.println(ret.toString());
 				Automate a = Main.epsilonAutomation(ret, 0, Main.nbStates(ret));
-				System.out.println( " here 222 ");
 				int I_F_State[] = new int[2]; // I_F_State[0] = NumberOfStartingState, I_F_State[1] = NumberOfFinalState
 				ArrayList<ArrayList<Integer>> DFA = determinisation(a, I_F_State);
-				System.out.println( " here 333 ");
 
 				String filename = file_path;
-				System.out.println( " here 444 ");
 				ArrayList<String> strList = readFile(filename);
-				System.out.println( " here 555 ");
 				for (String str : strList) {
+					
 					if (!str.isEmpty()) {
 						if (matchingAlgo(str, DFA, I_F_State[0], I_F_State[1])) {
 							return true;
@@ -296,7 +287,10 @@ public class RegEx {
 
 						if (CharList.contains(str.charAt(index))) {
 
+//							System.out.println(" before getNextCharIndex : next_char="+next_char);
 							next_char = getNextCharIndex(str.charAt(index), DFA);
+//							System.out.println(" \t after getNextCharIndex : next_char="+next_char);
+
 							if (next_char == finalState) {
 								return true;
 
@@ -371,13 +365,13 @@ public class RegEx {
 
 	// FROM REGEX TO SYNTAX TREE
 	private static RegExTree parse() throws Exception {
-		// BEGIN DEBUG: set conditionnal to true for debug example
-		if (false)
-			throw new Exception();
-		RegExTree example = exampleAhoUllman();
-		if (false)
-			return example;
-		// END DEBUG
+//		// BEGIN DEBUG: set conditionnal to true for debug example
+//		if (false)
+//			throw new Exception();
+//		RegExTree example = exampleAhoUllman();
+//		if (false)
+//			return example;
+//		// END DEBUG
 
 		ArrayList<RegExTree> result = new ArrayList<RegExTree>();
 		for (int i = 0; i < regEx.length(); i++)
@@ -573,22 +567,22 @@ public class RegEx {
 
 	// EXAMPLE
 	// --> RegEx from Aho-Ullman book Chap.10 Example 10.25
-	private static RegExTree exampleAhoUllman() {
-		RegExTree a = new RegExTree((int) 'a', new ArrayList<RegExTree>());
-		RegExTree b = new RegExTree((int) 'b', new ArrayList<RegExTree>());
-		RegExTree c = new RegExTree((int) 'c', new ArrayList<RegExTree>());
-		ArrayList<RegExTree> subTrees = new ArrayList<RegExTree>();
-		subTrees.add(c);
-		RegExTree cEtoile = new RegExTree(ETOILE, subTrees);
-		subTrees = new ArrayList<RegExTree>();
-		subTrees.add(b);
-		subTrees.add(cEtoile);
-		RegExTree dotBCEtoile = new RegExTree(CONCAT, subTrees);
-		subTrees = new ArrayList<RegExTree>();
-		subTrees.add(a);
-		subTrees.add(dotBCEtoile);
-		return new RegExTree(ALTERN, subTrees);
-	}
+//	private static RegExTree exampleAhoUllman() {
+//		RegExTree a = new RegExTree((int) 'a', new ArrayList<RegExTree>());
+//		RegExTree b = new RegExTree((int) 'b', new ArrayList<RegExTree>());
+//		RegExTree c = new RegExTree((int) 'c', new ArrayList<RegExTree>());
+//		ArrayList<RegExTree> subTrees = new ArrayList<RegExTree>();
+//		subTrees.add(c);
+//		RegExTree cEtoile = new RegExTree(ETOILE, subTrees);
+//		subTrees = new ArrayList<RegExTree>();
+//		subTrees.add(b);
+//		subTrees.add(cEtoile);
+//		RegExTree dotBCEtoile = new RegExTree(CONCAT, subTrees);
+//		subTrees = new ArrayList<RegExTree>();
+//		subTrees.add(a);
+//		subTrees.add(dotBCEtoile);
+//		return new RegExTree(ALTERN, subTrees);
+//	}
 }
 
 //UTILITARY CLASS
