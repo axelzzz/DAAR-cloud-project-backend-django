@@ -6,7 +6,6 @@ class Book(models.Model):
                  author, postingDate, releaseDate, language) :
 
         self.nameFile = nameFile
-        #self.bookFile = bookFile
         self.title = title
         self.author = author 
         self.postingDate = postingDate 

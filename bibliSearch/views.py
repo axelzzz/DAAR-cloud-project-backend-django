@@ -37,7 +37,30 @@ def getBooks(request):
     
     return HttpResponse(JSONRenderer().render(booksSerializer.data) )        
     
+def filter(request):
+    pattern = request.GET['pattern']
 
+    gateway = JavaGateway()
+    library = gateway.entry_point.getLibrary()
+    filteredBooks = library.getFilteredBooks(pattern)
+    jsonBooks = []
+
+    for i in range (filteredBooks.size()):
+
+        b = Book(
+          nameFile=gateway.jvm.String(filteredBooks[i].getNameFile()),
+          title=gateway.jvm.String(filteredBooks[i].getTitle()) ,
+          author=gateway.jvm.String(filteredBooks[i].getAuthor()) ,
+          postingDate=gateway.jvm.String(filteredBooks[i].getPostingDate()) ,
+          releaseDate=gateway.jvm.String(filteredBooks[i].getReleaseDate()) ,
+          language=gateway.jvm.String(filteredBooks[i].getLanguage())
+        )        
+        
+        jsonBooks.append(b)      
+    
+    booksSerializer = BookSerializer(jsonBooks, many=True)
+    
+    return HttpResponse(JSONRenderer().render(booksSerializer.data) )              
 #def searchPattern(request):
     #return render(request, 'bibliSearch/index.html')
     #return HttpResponse("you searched %s" %request.GET.get('book_title', ' hum '))
