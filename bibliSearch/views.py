@@ -61,11 +61,3 @@ def filter(request):
     booksSerializer = BookSerializer(jsonBooks, many=True)
     
     return HttpResponse(JSONRenderer().render(booksSerializer.data) )              
-#def searchPattern(request):
-    #return render(request, 'bibliSearch/index.html')
-    #return HttpResponse("you searched %s" %request.GET.get('book_title', ' hum '))
-    #json_books = {"books" : [request.GET.get('book_title'), "bible"]}
-    #return JsonResponse(json_books)
-    #return HttpResponse(json.dumps(json_books), content_type="application/json")
-    #return HttpResponse("il y a %i livres" %getNbLivres())
-    #return HttpResponse(getLivres())

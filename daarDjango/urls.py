@@ -10,10 +10,7 @@ router = routers.DefaultRouter()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #path('admin/', include('admin.site.urls')),
-    path('pollsAPI', include('pollsAPI.urls')),
     path('bibliSearch/', include('bibliSearch.urls')),
-    
-    path('snippets/', include('snippets.urls')),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     
