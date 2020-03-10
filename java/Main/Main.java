@@ -18,6 +18,8 @@ public class Main {
 		String keyword = "Project";
 //		String keyword = "anywhere";	// Error : ne peut pas avoir 2 char identiques
 		String folder_path = "testbeds";
+		
+		keyword = keyword.toLowerCase()
 
 		startTime = System.currentTimeMillis();
 		ArrayList<String> result_KMP = KMP.recherche(keyword, folder_path);
