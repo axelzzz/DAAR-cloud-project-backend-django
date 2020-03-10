@@ -25,14 +25,14 @@ public class Index {
 
 	public static boolean matchingAlgo(String keyword, String folder_path, String file_path) throws Exception {
 
-		ArrayList<StringPosition> iTable = IndexTable.processIndexTable(100, false, false, folder_path, file_path);
+		/*ArrayList<StringPosition> iTable = IndexTable.processIndexTable(100, false, false, folder_path, file_path);
 
 		for (StringPosition sp : iTable) {
 			if (sp.getWord().equals(keyword)) {
 				return true;
 			}
 		}
-
+*/
 		return false;
 	}
 

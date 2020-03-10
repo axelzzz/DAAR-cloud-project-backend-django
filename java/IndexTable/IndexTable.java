@@ -128,44 +128,19 @@ public class IndexTable {
 	 * arreter le traitement a une certaine ligne display : true pour afficher les
 	 * tables sur la console book : name of book
 	 */
-	public static ArrayList<StringPosition> processIndexTable(int nbLigneBreak, boolean doBreak, boolean display, String folder_path, String file_path) throws Exception {
-
-		// FAIRE STREEEEAAAAAAAMMMMMM
-		/*
-		 * String fileName =
-		 * "D:\\\\M2\\\\DAAR\\\\workspace\\\\DAAR\\\\TME3HX\\\\56667-0.txt";
-		 * 
-		 * //read file into stream, try-with-resources try (Stream<String> stream =
-		 * Files.lines(Paths.get(fileName))) {
-		 * 
-		 * stream.forEach(System.out::println);
-		 * 
-		 * 
-		 * } catch (IOException e) { e.printStackTrace(); }
-		 */
+	public static ArrayList<StringPosition> processIndexTable(int nbLigneBreak, boolean doBreak, 
+										boolean display, String folder_path, 
+										String file_path,
+										String nameFile) throws Exception {
 
 		ArrayList<StringPosition> finalListPositions = new ArrayList<>();
 
-		ArrayList<String> blackList = getBlackList();
+		//ArrayList<String> blackList = getBlackList();
 
-//		System.out.println("processIndexTAble : book = " + book);
-		File file = new File(file_path);
-//		File file = new File("test/test1.txt");
+		File file = new File(file_path);		
 
-//		System.out.println("file : " + file.getAbsolutePath());
-		
-		
-//		String book_str = book.toString();
-//		System.out.println(book_str);
-//
-//		String[] split = book.split("/");
-//		System.out.println("split[0] = " + split[0]);
-//		System.out.println("split[1] = " + split[1]);
-//		String tmp = split[1].substring(1);
-//		System.out.println(tmp);
-//		
 		File tmp_file = new File("tmp\\" + file_path.substring(folder_path.length()+1));
-//		System.out.println("tmp_file : " + tmp_file.getAbsolutePath());
+
 
 		if (tmp_file.exists()) {
 			BufferedReader buffered_inputstreamreader = new BufferedReader(
@@ -190,9 +165,6 @@ public class IndexTable {
 			while ((readLine = br.readLine()) != null) {
 
 				String[] wordsSplit = readLine.split("[^a-zA-Z]");
-
-				// if(numLigne == 1)
-				// System.out.println("1er ligne :"+readLine);
 
 				WholeWordIndexFinder finder = new WholeWordIndexFinder(readLine);
 
@@ -234,14 +206,7 @@ public class IndexTable {
 
 			}
 
-			/*
-			 * for(StringPosition sp:sPositions) System.out.println(sp.displayWordPos());
-			 */
-
-			// System.out.println("size sposition before supp doublon "+sPositions.size());
 			sPositions = supprimerDoublons(sPositions);
-
-			// System.out.println("size sposition after supp doublon "+sPositions.size());
 
 			for (StringPosition sp : sPositions) {
 
@@ -250,7 +215,6 @@ public class IndexTable {
 				 * une fois
 				 */
 				if (contientDejaMot(finalListPositions, sp.getWord()))
-					// System.out.println("contien deja mot "+sp.getWord());
 					continue;
 
 				else
@@ -258,13 +222,6 @@ public class IndexTable {
 
 			}
 
-
-			/*
-			 * if(display) { for(StringPosition sp:finalListPositions)
-			 * System.out.println(sp.displayWordPos()); }
-			 */
-
-			// System.out.println("il y a "+numLigne+" lignes");
 			br.close();
 
 
@@ -282,8 +239,7 @@ public class IndexTable {
 
 			/* on cree un fichier pour la table d index sans occ */
 
-//			File fileIndexTable = new File("tmp/test1.txt");
-			File fileIndexTable = tmp_file;
+			File fileIndexTable = new File("/root/bigFatWorkspace/M2/DAAR/db-indexes50/index"+nameFile);//tmp_file;
 			fileIndexTable.createNewFile();
 			BufferedWriter out2 = new BufferedWriter(new FileWriter(fileIndexTable));
 
@@ -297,8 +253,9 @@ public class IndexTable {
 				indexTable.put(so, lp);
 
 				/* on ecrit dans un fichier */
-				out2.write(" \"" + so.getWord() + "\"");
-
+				//out2.write(" \"" + so.getWord() + "\"");
+				out2.write(so.getWord()+" ");
+				
 				if (display)
 					System.out.print(" \"" + so.getWord() + "\" " + so.getNbOcc() + " ");
 
@@ -315,12 +272,6 @@ public class IndexTable {
 				if (display)
 					System.out.println();
 			}
-
-			/*
-			 * for (int i = 0; (i < mapSortedWords.size()) &&
-			 * (mapSortedWords.get(i).getValue()<10) ; i++) {
-			 * out.write(mapSortedWords.get(i).getKey()+"\r\n"); }
-			 */
 
 			out2.flush();
 			out2.close();
@@ -344,15 +295,25 @@ public class IndexTable {
 		return list;
 	}
 
-//	public static void main(String[] args) {
-//
-//		try {
-//			System.out.println("test");
-//			ArrayList<StringPosition> finalLsp = processIndexTable(100, true, true, "testbeds/9.txt");
-//		} catch (Exception e) {
-//
-//			e.printStackTrace();
-//		}
-//	}
+	public static void main(String[] args) {
+
+		try {
+			File folder = new File("/root/bigFatWorkspace/M2/DAAR/database500");
+			for(final File fileEntry : folder.listFiles()) {
+				
+				if (!fileEntry.isDirectory()) 
+				{
+					ArrayList<StringPosition> finalLsp = processIndexTable(0, false, false, folder.getAbsolutePath(), 
+					fileEntry.getAbsolutePath(), 
+					fileEntry.getName());
+				}	
+			
+			}
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+	}
 
 }
