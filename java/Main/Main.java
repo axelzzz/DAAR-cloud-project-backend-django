@@ -6,6 +6,8 @@ import Betweenness.Betweenness;
 import KMP.KMP;
 import RegEx.RegEx;
 import IndexTable.Index;
+import SimpleIndexing.SimpleIndexing;
+
 
 public class Main {
 
@@ -22,6 +24,17 @@ public class Main {
 		endTime = System.currentTimeMillis();
 		System.out.println("KMP a pris " + (endTime - startTime) + " ms : ");
 		for (String S : result_KMP) {
+			System.out.println("\t" + S);
+		}
+		System.out.println();
+		
+		
+		
+		startTime = System.currentTimeMillis();
+		ArrayList<String> result_SI = SimpleIndexing.recherche(keyword, folder_path);
+		endTime = System.currentTimeMillis();
+		System.out.println("SimpleIndexing a pris " + (endTime - startTime) + " ms : ");
+		for (String S : result_SI) {
 			System.out.println("\t" + S);
 		}
 		System.out.println();
