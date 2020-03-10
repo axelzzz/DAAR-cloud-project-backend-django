@@ -5,11 +5,11 @@ import java.util.*;
 
 public class KMP {
 
-	public static ArrayList<String> Recherche(String keyword, String folder_path) throws Exception {
+	public static ArrayList<String> recherche(String keyword, String folder_path) throws Exception {
 		ArrayList<String> result = new ArrayList<String>();
 
 //		keyword = ' ' + keyword + ' '; // decommenter si c'est une recherche exacte/precise
-		int[] retenue = GetRetenue(keyword);
+		int[] retenue = getRetenue(keyword);
 
 		File file = new File(folder_path);
 		File[] list_files = file.listFiles();
@@ -41,7 +41,7 @@ public class KMP {
 		return strList;
 	}
 
-	private static int[] GetRetenue(String facteur) {
+	private static int[] getRetenue(String facteur) {
 		int[] retenue = new int[facteur.length() + 1];
 		retenue[0] = -1;
 		retenue[1] = 0;

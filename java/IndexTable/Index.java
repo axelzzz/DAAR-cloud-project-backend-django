@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Index {
 
-	public static ArrayList<String> Recherche(String keyword, String folder_path) throws Exception {
+	public static ArrayList<String> recherche(String keyword, String folder_path) throws Exception {
 		ArrayList<String> result = new ArrayList<String>();
 
 		// S = ' ' + S + ' ';

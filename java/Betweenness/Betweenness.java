@@ -19,18 +19,18 @@ public class Betweenness {
 		ArrayList<HashMap<String, Integer>> hm_list = new ArrayList<HashMap<String, Integer>>();
 
 		for (String file_path : paths_list) {
-			HashMap<String, Integer> tmp = ReadFromFile(file_path);
+			HashMap<String, Integer> tmp = readFromFile(file_path);
 			hm_list.add(tmp);
 		}
 
-		float matrice[][] = CalculateJaccardDistanceMatrix(hm_list, seuil);
+		float matrice[][] = calculateJaccardDistanceMatrix(hm_list, seuil);
 
 		result = index(matrice, paths_list);
 
 		return result;
 	}
 
-	private static HashMap<String, Integer> ReadFromFile(String filename) throws Exception {
+	private static HashMap<String, Integer> readFromFile(String filename) throws Exception {
 		HashMap<String, Integer> strList = new HashMap<String, Integer>();
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename)));
 		String line;
@@ -52,7 +52,7 @@ public class Betweenness {
 		return strList;
 	}
 
-	private static int CalculateNumberOccurrences(String word, HashMap<String, Integer> map) {
+	private static int calculateNumberOccurrences(String word, HashMap<String, Integer> map) {
 		if (map.containsKey(word)) {
 			return map.get(word);
 		} else {
@@ -60,23 +60,23 @@ public class Betweenness {
 		}
 	}
 
-	private static float CalculateJaccardDistance(HashMap<String, Integer> HM1, HashMap<String, Integer> HM2) {
+	private static float calculateJaccardDistance(HashMap<String, Integer> hM1, HashMap<String, Integer> hM2) {
 		int numerator = 0;
 		int denominator = 0;
 
-		for (String word : HM1.keySet()) {
-			int k1 = CalculateNumberOccurrences(word, HM1);
-			int k2 = CalculateNumberOccurrences(word, HM2);
+		for (String word : hM1.keySet()) {
+			int k1 = calculateNumberOccurrences(word, hM1);
+			int k2 = calculateNumberOccurrences(word, hM2);
 			int max = Math.max(k1, k2);
 			int min = Math.min(k1, k2);
 			numerator += (max - min);
 			denominator += max;
 		}
 
-		for (String word : HM2.keySet()) {
-			if (!HM1.containsKey(word)) {
-				int k1 = CalculateNumberOccurrences(word, HM1);
-				int k2 = CalculateNumberOccurrences(word, HM2);
+		for (String word : hM2.keySet()) {
+			if (!hM1.containsKey(word)) {
+				int k1 = calculateNumberOccurrences(word, hM1);
+				int k2 = calculateNumberOccurrences(word, hM2);
 				int max = Math.max(k1, k2);
 				int min = Math.min(k1, k2);
 				numerator += (max - min);
@@ -87,13 +87,13 @@ public class Betweenness {
 		return numerator / (float) denominator;
 	}
 
-	private static float[][] CalculateJaccardDistanceMatrix(ArrayList<HashMap<String, Integer>> list, double seuil) {
+	private static float[][] calculateJaccardDistanceMatrix(ArrayList<HashMap<String, Integer>> list, double seuil) {
 
 		float matrice[][] = new float[list.size()][list.size()];
 
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = i + 1; j < list.size(); j++) {
-				float tmp = CalculateJaccardDistance(list.get(i), list.get(j));
+				float tmp = calculateJaccardDistance(list.get(i), list.get(j));
 				matrice[i][j] = tmp;
 				matrice[j][i] = tmp;
 			}
@@ -140,13 +140,13 @@ public class Betweenness {
 		}
 		System.out.println();
 
-		ArrayList<String> Vertices = new ArrayList<String>();
+		ArrayList<String> vertices = new ArrayList<String>();
 		for (int i = 0; i < size; i++) {
-			Vertices.add(paths_list.get(i).toString());
+			vertices.add(paths_list.get(i).toString());
 //			System.out.println(paths_list.get(i).toString());
 		}
 
-		ArrayList<ArrayList<String>> Neighbor = new ArrayList<ArrayList<String>>();
+		ArrayList<ArrayList<String>> neighbor = new ArrayList<ArrayList<String>>();
 		for (int i = 0; i < size; i++) {
 			ArrayList<String> tmp = new ArrayList<String>();
 			for (int j = 0; j < size; j++) {
@@ -155,88 +155,88 @@ public class Betweenness {
 //					System.out.println(paths_list.get(i).toString());
 				}
 			}
-			Neighbor.add(tmp);
+			neighbor.add(tmp);
 		}
 		
 		for (int i = 0; i < size; i++) {
-			System.out.println(Vertices.get(i));
-			for (int j=0; j<Neighbor.get(i).size(); j++) {
-				System.out.println("\t"+Neighbor.get(i).get(j));
+			System.out.println(vertices.get(i));
+			for (int j=0; j<neighbor.get(i).size(); j++) {
+				System.out.println("\t"+neighbor.get(i).get(j));
 			}
 		}
 		System.out.println();
 
-		float[] BetweennessCentrality = new float[Vertices.size()];
-		for (int i = 0; i < Vertices.size(); i++) {
-			BetweennessCentrality[i] = 0;
+		float[] betweennessCentrality = new float[vertices.size()];
+		for (int i = 0; i < vertices.size(); i++) {
+			betweennessCentrality[i] = 0;
 		}
 
-		for (String v : Vertices) {
-			ArrayList<String> Queue = new ArrayList<String>();
-			ArrayList<String> Stack = new ArrayList<String>();
-			ArrayList<ArrayList<String>> Pred = new ArrayList<ArrayList<String>>();
-			float[] dist = new float[Vertices.size()];
-			float[] sigma = new float[Vertices.size()];
+		for (String v : vertices) {
+			ArrayList<String> queue = new ArrayList<String>();
+			ArrayList<String> stack = new ArrayList<String>();
+			ArrayList<ArrayList<String>> pred = new ArrayList<ArrayList<String>>();
+			float[] dist = new float[vertices.size()];
+			float[] sigma = new float[vertices.size()];
 
-			for (int i = 0; i < Vertices.size(); i++) {
-				Pred.add(new ArrayList<String>());
+			for (int i = 0; i < vertices.size(); i++) {
+				pred.add(new ArrayList<String>());
 				dist[i] = -1;
 				sigma[i] = 0;
 			}
 
-			dist[Vertices.indexOf(v)] = 0;
-			sigma[Vertices.indexOf(v)] = 1;
-			Queue.add(v);
+			dist[vertices.indexOf(v)] = 0;
+			sigma[vertices.indexOf(v)] = 1;
+			queue.add(v);
 
-			while (!Queue.isEmpty()) {
-				String s = Queue.remove(0);
-				Stack.add(s);
-				for (String w : Neighbor.get(Vertices.indexOf(s))) {
-					if (dist[Vertices.indexOf(w)] < 0) {
-						dist[Vertices.indexOf(w)] = dist[Vertices.indexOf(s)] + 1;
-						Queue.add(w);
+			while (!queue.isEmpty()) {
+				String s = queue.remove(0);
+				stack.add(s);
+				for (String w : neighbor.get(vertices.indexOf(s))) {
+					if (dist[vertices.indexOf(w)] < 0) {
+						dist[vertices.indexOf(w)] = dist[vertices.indexOf(s)] + 1;
+						queue.add(w);
 					}
-					if (dist[Vertices.indexOf(w)] == dist[Vertices.indexOf(s)] + 1) {
-						sigma[Vertices.indexOf(w)] += sigma[Vertices.indexOf(s)];
-						Pred.get(Vertices.indexOf(w)).add(s);
+					if (dist[vertices.indexOf(w)] == dist[vertices.indexOf(s)] + 1) {
+						sigma[vertices.indexOf(w)] += sigma[vertices.indexOf(s)];
+						pred.get(vertices.indexOf(w)).add(s);
 					}
 				}
 			}
 
-			float[] delta = new float[Vertices.size()];
-			for (int i = 0; i < Vertices.size(); i++) {
+			float[] delta = new float[vertices.size()];
+			for (int i = 0; i < vertices.size(); i++) {
 				delta[i] = 0;
 			}
 
-			while (!Stack.isEmpty()) {
-				String w = Stack.remove(Stack.size() - 1);
-				for (String s : Pred.get(Vertices.indexOf(w))) {
-					delta[Vertices.indexOf(s)] += sigma[Vertices.indexOf(s)] / sigma[Vertices.indexOf(w)]
-							* (1 + delta[Vertices.indexOf(w)]);
+			while (!stack.isEmpty()) {
+				String w = stack.remove(stack.size() - 1);
+				for (String s : pred.get(vertices.indexOf(w))) {
+					delta[vertices.indexOf(s)] += sigma[vertices.indexOf(s)] / sigma[vertices.indexOf(w)]
+							* (1 + delta[vertices.indexOf(w)]);
 
 				}
 				if (w != v) {
-					BetweennessCentrality[Vertices.indexOf(w)] += delta[Vertices.indexOf(w)];
+					betweennessCentrality[vertices.indexOf(w)] += delta[vertices.indexOf(w)];
 				}
 			}
 
 		}
 
-		for (String v : Vertices) {
-			BetweennessCentrality[Vertices.indexOf(v)] /= 2.0;
+		for (String v : vertices) {
+			betweennessCentrality[vertices.indexOf(v)] /= 2.0;
 //			System.out.println(v + ", \t CB=" + BetweennessCentrality[Vertices.indexOf(v)]);
 		}
 //		System.out.println();
 
 		// normalisation
 		float max = 0;
-		for (String v : Vertices) {
-			if (BetweennessCentrality[Vertices.indexOf(v)] > max)
-				max = BetweennessCentrality[Vertices.indexOf(v)];
+		for (String v : vertices) {
+			if (betweennessCentrality[vertices.indexOf(v)] > max)
+				max = betweennessCentrality[vertices.indexOf(v)];
 		}
 
-		for (String v : Vertices) {
-			BetweennessCentrality[Vertices.indexOf(v)] /= max;
+		for (String v : vertices) {
+			betweennessCentrality[vertices.indexOf(v)] /= max;
 		}
 
 //		for (String v : Vertices) {
@@ -245,8 +245,8 @@ public class Betweenness {
 
 		// sort by value
 		Map<String, Float> map = new HashMap<String, Float>();
-		for (String v : Vertices) {
-			map.put(v, BetweennessCentrality[Vertices.indexOf(v)]);
+		for (String v : vertices) {
+			map.put(v, betweennessCentrality[vertices.indexOf(v)]);
 		}
 		List<Map.Entry<String, Float>> infoIds = new ArrayList<Map.Entry<String, Float>>(map.entrySet());
 

@@ -18,7 +18,7 @@ public class Main {
 		String folder_path = "testbeds";
 
 		startTime = System.currentTimeMillis();
-		ArrayList<String> result_KMP = KMP.Recherche(keyword, folder_path);
+		ArrayList<String> result_KMP = KMP.recherche(keyword, folder_path);
 		endTime = System.currentTimeMillis();
 		System.out.println("KMP a pris " + (endTime - startTime) + " ms : ");
 		for (String S : result_KMP) {
