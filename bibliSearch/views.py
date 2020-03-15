@@ -42,7 +42,8 @@ def filter(request):
 
     gateway = JavaGateway()
     library = gateway.entry_point.getLibrary()
-    filteredBooks = library.getFilteredBooks(pattern)
+    #filteredBooks = library.getFilteredBooksKMP(pattern)
+    filteredBooks = library.getFilteredBooksIndex(pattern)
     jsonBooks = []
 
     for i in range (filteredBooks.size()):
