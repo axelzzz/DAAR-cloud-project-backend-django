@@ -39,11 +39,16 @@ def getBooks(request):
     
 def filter(request):
     pattern = request.GET['pattern']
-
+   
     gateway = JavaGateway()
     library = gateway.entry_point.getLibrary()
-    #filteredBooks = library.getFilteredBooksKMP(pattern)
-    filteredBooks = library.getFilteredBooksIndex(pattern)
+    
+    
+    if( len(pattern.split()) > 1 ) :
+        filteredBooks = library.getFilteredBooksKMP(pattern)    
+    else :
+        filteredBooks = library.getFilteredBooksIndex(pattern)  
+        
     jsonBooks = []
 
     for i in range (filteredBooks.size()):
