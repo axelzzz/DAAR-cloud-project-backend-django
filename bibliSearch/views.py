@@ -43,9 +43,12 @@ def filter(request):
     gateway = JavaGateway()
     library = gateway.entry_point.getLibrary()
     
-    
-    if( len(pattern.split()) > 1 ) :
+    if('*' in pattern or '.' in pattern or '|' in pattern or '(' in pattern or ')' in pattern) :
+        filteredBooks = library.getFilteredBooksRegexp(pattern)
+
+    elif( len(pattern.split()) > 1 ) :
         filteredBooks = library.getFilteredBooksKMP(pattern)    
+        
     else :
         filteredBooks = library.getFilteredBooksIndex(pattern)  
         
