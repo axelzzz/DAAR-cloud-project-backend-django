@@ -1,0 +1,1 @@
+web: gunicorn daarDjango.wsgi --log-file –
