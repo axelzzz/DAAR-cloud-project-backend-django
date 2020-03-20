@@ -25,10 +25,13 @@ SECRET_KEY = 'g)_h^pjz0oqdk!zd*$&&c2l&ne-be$)c36llt=mh-lhkf@4rtq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'http://xxl-library-sengine-frontend.herokuapp.com/search'
+]
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:4200'
+    'http://localhost:4200',
+    'http://xxl-library-sengine-frontend.herokuapp.com/search'
 ]
 
 
