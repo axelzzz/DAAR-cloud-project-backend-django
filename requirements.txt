@@ -78,7 +78,6 @@ lazy-object-proxy==1.4.3
 ldap3==2.5.1
 ldapdomaindump==0.9.1
 lxml==4.5.0
-lz4==3.0.2+dfsg
 Mako==1.0.7
 Markdown==3.1.1
 MarkupSafe==1.1.0
