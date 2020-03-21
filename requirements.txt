@@ -188,5 +188,4 @@ XlsxWriter==1.1.2
 yara-python==3.10.0
 yarl==1.4.2
 yaswfp==0.9.3
-zim==0.72.0
 zipp==3.1.0
