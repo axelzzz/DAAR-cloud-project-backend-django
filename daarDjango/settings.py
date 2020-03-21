@@ -26,13 +26,13 @@ SECRET_KEY = 'g)_h^pjz0oqdk!zd*$&&c2l&ne-be$)c36llt=mh-lhkf@4rtq'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'xxl-library-sengine.herokuapp.com',
+    'cloud-project-backend-django.herokuapp.com',
     '127.0.0.1'
 ]
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:4200',
-    'http://xxl-library-sengine-frontend.herokuapp.com/search'
+    'http://xxl-library-sengine.herokuapp.com/search'
 ]
 
 
