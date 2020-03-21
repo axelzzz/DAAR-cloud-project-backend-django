@@ -77,7 +77,6 @@ kiwisolver==1.0.1
 lazy-object-proxy==1.4.3
 ldap3==2.5.1
 ldapdomaindump==0.9.1
-louis==3.13.0
 lxml==4.5.0
 lz4==3.0.2+dfsg
 Mako==1.0.7
