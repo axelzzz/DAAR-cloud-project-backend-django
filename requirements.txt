@@ -169,7 +169,6 @@ tls-parser==1.2.1
 tornado==5.1.1
 traitlets==4.3.3
 typed-ast==1.4.1
-unattended-upgrades==0.1
 unicodecsv==0.14.1
 uritemplate==3.0.1
 urllib3==1.25.8
