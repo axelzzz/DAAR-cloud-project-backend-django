@@ -120,7 +120,6 @@ pycrypto==2.6.1
 pycryptodomex==3.6.1
 pycups==1.9.73
 pycurl==7.43.0.2
-pyenchant==2.0.0
 Pygments==2.6.1
 PyGObject==3.34.0
 pygtkspellcheck==4.0.5
