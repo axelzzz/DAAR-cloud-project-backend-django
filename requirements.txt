@@ -153,7 +153,6 @@ SecretStorage==3.1.2
 shodan==1.21.3
 simplegeneric==0.8.1
 simplejson==3.16.0
-sip==4.19.21
 sipvicious==0.3.0
 six==1.14.0
 smoke-zephyr==1.4.1
