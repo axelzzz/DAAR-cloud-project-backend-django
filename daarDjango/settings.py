@@ -26,7 +26,7 @@ SECRET_KEY = 'g)_h^pjz0oqdk!zd*$&&c2l&ne-be$)c36llt=mh-lhkf@4rtq'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'http://xxl-library-sengine-frontend.herokuapp.com/search'
+    'xxl-library-sengine.herokuapp.com'
 ]
 
 CORS_ORIGIN_WHITELIST = [
