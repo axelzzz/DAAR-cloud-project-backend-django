@@ -1,0 +1,7 @@
+[2020-03-21 00:15:55 +0100] [7222] [INFO] Starting gunicorn 20.0.4
+[2020-03-21 00:15:55 +0100] [7222] [INFO] Listening at: http://0.0.0.0:5000 (7222)
+[2020-03-21 00:15:55 +0100] [7222] [INFO] Using worker: sync
+[2020-03-21 00:15:55 +0100] [7225] [INFO] Booting worker with pid: 7225
+[2020-03-21 00:16:57 +0100] [7222] [INFO] Handling signal: int
+[2020-03-21 00:16:57 +0100] [7225] [INFO] Worker exiting (pid: 7225)
+[2020-03-21 00:16:57 +0100] [7222] [INFO] Shutting down: Master
