@@ -181,7 +181,6 @@ webencodings==0.5.1
 Werkzeug==0.16.1
 wfuzz==2.4.5
 whitenoise==5.0.1
-wifite==2.5.2
 wrapt==1.11.2
 wsproto==0.11.0
 xcffib==0.8.1
