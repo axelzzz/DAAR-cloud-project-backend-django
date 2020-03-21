@@ -164,7 +164,6 @@ tabulate==0.8.2
 termcolor==1.1.0
 termineter==1.0.4
 texttable==1.6.2
-theHarvester==3.1.0
 tld==0.9.1
 tls-parser==1.2.1
 tornado==5.1.1
