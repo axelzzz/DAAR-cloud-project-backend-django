@@ -173,7 +173,6 @@ unicodecsv==0.14.1
 uritemplate==3.0.1
 urllib3==1.25.8
 urwid==2.0.1
-vinetto==0.8.0
 virtualenv==20.0.13
 wafw00f==2.1.0
 wapiti3==3.0.3
