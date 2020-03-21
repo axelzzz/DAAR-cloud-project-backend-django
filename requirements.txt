@@ -139,7 +139,6 @@ pysnmp==4.4.6
 PySocks==1.6.8
 python-dateutil==2.7.3
 python-debian==0.1.36
-python-debianbts==3.0.2
 python-magic==0.4.16
 python-magic-ahupp==0.4.13
 pytz==2019.3
