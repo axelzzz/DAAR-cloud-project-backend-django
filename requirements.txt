@@ -85,7 +85,6 @@ maxminddb==1.4.1
 mccabe==0.6.1
 mechanize==0.4.5
 mistune==0.8.4
-mitmproxy==4.0.4
 multidict==4.7.3
 mysqlclient==1.4.4
 nassl==2.2.0
