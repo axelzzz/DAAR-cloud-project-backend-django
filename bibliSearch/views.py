@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 
-from py4j.java_gateway import JavaGateway
+from py4j.java_gateway import JavaGateway, GatewayParameters
 
 from .models import Book
 from .serializers import BookSerializer
@@ -15,7 +15,8 @@ def index(request):
 
 
 def getBooks(request):
-    gateway = JavaGateway()
+    #gateway = JavaGateway()
+    gateway = JavaGateway(gateway_parameters=GatewayParameters(address='aqueous-scrubland-31409.herokuapp.com', port=25333))
     library = gateway.entry_point.getLibrary()
     books = library.getBooks()
     jsonBooks = []
