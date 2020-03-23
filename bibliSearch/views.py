@@ -10,7 +10,6 @@ import os
 
 database_path = "bibliSearch/static/database1500"
 
-
 library = Library(database_path)
 books = library.getBooks()
 
