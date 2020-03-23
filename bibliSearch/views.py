@@ -8,7 +8,7 @@ from .serializers import BookSerializer
 import json
 import os
 
-database_path = "bibliSearch/static/database1664"
+database_path = "bibliSearch/static/database1500"
 
 
 library = Library(database_path)
