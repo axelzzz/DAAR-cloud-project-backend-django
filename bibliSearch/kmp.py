@@ -11,7 +11,7 @@ class KMP():
             file_path = folder_path+"/"+filename
             current_file = open(file_path, "r")
 
-            if(self.match(pattern, current_file)):
+            if(self.match(pattern, current_file)==True):
                 result.append(bibliSearch.models.Book(file_path))
 
         return result
