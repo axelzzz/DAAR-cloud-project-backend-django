@@ -4,14 +4,12 @@ import re
 
 class Regex():
 
-    database_index_path = "bibliSearch/static/index"
 
     def recherche(self, pattern, folder_path):       
         result = []
         for filename in os.listdir(folder_path):
 
             file_path = folder_path+"/"+filename
-            index_path = self.database_index_path+"/"+filename
             current_file = open(file_path, "r")
 
             if(self.match(pattern, current_file)):

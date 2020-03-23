@@ -4,6 +4,7 @@ from .parser import Parser
 from .indexing import Indexing
 from .kmp import KMP
 from .regex import Regex
+from .betweenness import Betweenness
 
 class Book(models.Model):
 
@@ -76,13 +77,20 @@ class Library(models.Model):
 
     def getFilteredBooksRegexp(self, pattern, folder_path) :
         regex = Regex()
-        return regex.recherche(pattern, folder_path)
+        result = regex.recherche(pattern, folder_path)
+        betweenness = Betweenness()
+        return betweenness.classement(0.75, result)
+        
 
     def getFilteredBooksKMP(self, pattern, folder_path) :
         kmp = KMP()
-        return kmp.recherche(pattern, folder_path)
+        result = kmp.recherche(pattern, folder_path)
+        betweenness = Betweenness()
+        return betweenness.classement(0.75, result)
 
     def getFilteredBooksIndex(self, pattern, folder_path) :
         indexing = Indexing() 
-        return indexing.recherche(pattern, folder_path)
+        result = indexing.recherche(pattern, folder_path)
+        betweenness = Betweenness()
+        return betweenness.classement(0.75, result)
         
