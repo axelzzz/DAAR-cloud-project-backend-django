@@ -1,6 +1,7 @@
 from django.db import models
 import os
 from .parser import Parser
+from .indexing import Indexing
 
 class Book(models.Model):
 
@@ -68,19 +69,18 @@ class Library(models.Model):
         for filename in os.listdir(folderPath):
             self.books.append(Book(folderPath+"/"+filename))
 
-        
-
     def getBooks(self) :
         return self.books        
 
-    def getFilteredBooksRegexp(self, pattern) :
+    def getFilteredBooksRegexp(self, pattern, folder_path) :
 
         print()
 
-    def getFilteredBooksKMP(self, pattern) :
+    def getFilteredBooksKMP(self, pattern, folder_path) :
 
         print()
 
-    def getFilteredBooksIndex(self, pattern) :
-
-        print()
+    def getFilteredBooksIndex(self, pattern, folder_path) :
+        indexing = Indexing() 
+        return indexing.recherche(pattern, folder_path)
+        
