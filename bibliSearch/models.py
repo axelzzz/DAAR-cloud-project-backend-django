@@ -2,6 +2,8 @@ from django.db import models
 import os
 from .parser import Parser
 from .indexing import Indexing
+from .kmp import KMP
+from .regex import Regex
 
 class Book(models.Model):
 
@@ -73,12 +75,12 @@ class Library(models.Model):
         return self.books        
 
     def getFilteredBooksRegexp(self, pattern, folder_path) :
-
-        print()
+        regex = Regex()
+        return regex.recherche(pattern, folder_path)
 
     def getFilteredBooksKMP(self, pattern, folder_path) :
-
-        print()
+        kmp = KMP()
+        return kmp.recherche(pattern, folder_path)
 
     def getFilteredBooksIndex(self, pattern, folder_path) :
         indexing = Indexing() 
