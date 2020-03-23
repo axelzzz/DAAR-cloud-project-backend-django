@@ -4,37 +4,27 @@ from rest_framework.renderers import JSONRenderer
 
 from py4j.java_gateway import JavaGateway, GatewayParameters
 
-from .models import Book
+from .models import Book, Library
 from .serializers import BookSerializer
 
 import json
 import py4j
+import os
+
+database_path = "bibliSearch/static/database1664"
+database_index_path = ""
+
+
+library = Library(database_path)
+books = library.getBooks()
 
 def index(request):
     return render(request, 'bibliSearch/index.html')
 
 
 def getBooks(request):
-    gateway = JavaGateway()
-    #gateway = JavaGateway(gateway_parameters=GatewayParameters(address='aqueous-scrubland-31409.herokuapp.com', port=25333))
-    library = gateway.entry_point.getLibrary()
-    books = library.getBooks()
-    jsonBooks = []
 
-    for i in range (books.size()):
-
-        b = Book(
-          nameFile=gateway.jvm.String(books[i].getNameFile()),
-          title=gateway.jvm.String(books[i].getTitle()) ,
-          author=gateway.jvm.String(books[i].getAuthor()) ,
-          postingDate=gateway.jvm.String(books[i].getPostingDate()) ,
-          releaseDate=gateway.jvm.String(books[i].getReleaseDate()) ,
-          language=gateway.jvm.String(books[i].getLanguage())
-        )        
-        
-        jsonBooks.append(b)      
-    
-    booksSerializer = BookSerializer(jsonBooks, many=True)
+    booksSerializer = BookSerializer(books, many=True)
     
     return HttpResponse(JSONRenderer().render(booksSerializer.data) )        
     
