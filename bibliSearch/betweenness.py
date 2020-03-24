@@ -48,7 +48,7 @@ class Betweenness():
 
     def classement(self, threshold, allFiles):
 
-        G = createGraph(allFiles, threshold)
+        G = self.createGraph(allFiles, threshold)
 
         CB = dict.fromkeys(G,0.0)
         for s in G.nodes():
