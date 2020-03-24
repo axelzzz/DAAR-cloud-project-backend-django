@@ -1,1 +1,1 @@
-web: gunicorn daarDjango.wsgi --log-file –
+web: gunicorn daarDjango.wsgi --log-file – --log-level debug
