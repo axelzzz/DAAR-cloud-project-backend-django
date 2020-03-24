@@ -81,7 +81,7 @@ class Library(models.Model):
         return result
         #betweenness = Betweenness()
         #return betweenness.classement(0.75, result)
-        
+    
 
     def getFilteredBooksKMP(self, pattern, folder_path) :
         kmp = KMP()
