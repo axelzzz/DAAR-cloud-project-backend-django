@@ -5,14 +5,15 @@ from .indexing import Indexing
 from .kmp import KMP
 from .regex import Regex
 from .betweenness import Betweenness
+from .pagerank import PageRank
 
 class Book(models.Model):
 
     def __init__(self, filepath) :
         self.bookFile = open(filepath, "r")
         self.nameFile = os.path.basename(self.bookFile.name)
-        self.author = ""
-        self.title = ""
+        self.author = "Unknown"
+        self.title = "No title"
         self.postingDate = ""
         self.releaseDate = ""
         self.language = ""
@@ -73,6 +74,17 @@ class Library(models.Model):
             self.books.append(Book(folderPath+"/"+filename))
 
     def getBooks(self) :
+        pagerank = PageRank()
+        
+        matrix = [[False, False, False, False],
+                  [True, False, True, False],
+                  [True, False, False, False],
+                  [True, True, True, False]]
+
+        vectorInit = pagerank.firstVectorRank(len(matrix))
+
+        print(pagerank.pageRankDumpingFactor(vectorInit, matrix, 20, 0.85))
+
         return self.books        
 
     def getFilteredBooksRegexp(self, pattern, folder_path) :
@@ -92,7 +104,7 @@ class Library(models.Model):
 
     def getFilteredBooksIndex(self, pattern, folder_path) :
         indexing = Indexing() 
-        result = indexing.recherche(pattern, folder_path)
+        result = indexing.recherche(pattern.lower(), folder_path)
         return result
         #betweenness = Betweenness()
         #return betweenness.classement(0.75, result)
