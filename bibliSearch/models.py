@@ -74,6 +74,7 @@ class Library(models.Model):
             self.books.append(Book(folderPath+"/"+filename))
 
     def getBooks(self) :
+        """
         pagerank = PageRank()
         
         matrix = [[False, False, False, False],
@@ -84,7 +85,7 @@ class Library(models.Model):
         vectorInit = pagerank.firstVectorRank(len(matrix))
 
         print(pagerank.pageRankDumpingFactor(vectorInit, matrix, 20, 0.85))
-
+        """
         return self.books        
 
     def getFilteredBooksRegexp(self, pattern, folder_path) :
@@ -108,4 +109,49 @@ class Library(models.Model):
         return result
         #betweenness = Betweenness()
         #return betweenness.classement(0.75, result)
+
+
+    def getFilteredBooksByTitle(self, pattern, books):
+        result = []
+        for book in books:
+            if pattern.lower() in book.getTitle().lower():
+                result.append(book)
+            
+        return result
+
+
+    def getFilteredBooksByAuthor(self, pattern, books):
+        result = []
+        for book in books:            
+            if pattern.lower() in book.getAuthor().lower():
+                result.append(book)
+            
+        return result
+
+
+    def getFilteredBooksByReleaseDate(self, pattern, books):
+        result = []
+        for book in books:
+            if pattern.lower() in book.getReleaseDate().lower():
+                result.append(book)
+            
+        return result
+
+
+    def getFilteredBooksByPostingDate(self, pattern, books):
+        result = []
+        for book in books:
+            if pattern.lower() in book.getPostingDate().lower():
+                result.append(book)
+            
+        return result
+
+
+    def getFilteredBooksByLanguage(self, pattern, books):
+        result = []
+        for book in books:
+            if pattern.lower() in book.getLanguage().lower():
+                result.append(book)
+            
+        return result
         
