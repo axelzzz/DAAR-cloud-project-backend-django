@@ -12,7 +12,7 @@ from .classement import Classement
 class Book(models.Model):
 
     def __init__(self, filepath) :
-        self.bookFile = open(filepath,mode="r",encoding="UTF-8")
+        self.bookFile = open(filepath, mode="r", encoding="UTF-8")
         self.nameFile = os.path.basename(self.bookFile.name)
         self.author = "Unknown"
         self.title = "No title"
@@ -101,21 +101,21 @@ class Library(models.Model):
     def getFilteredBooksRegexp(self, pattern, folder_path) :
         regex = Regex()
         result = regex.recherche(pattern, folder_path)
-        #return result
-        print ("BBBBBBBBBBB")
         classement = Classement()
-        return classement.sortBooks(result)
+        return classement.sortBooks([i.nameFile for i in result])
     
 
     def getFilteredBooksKMP(self, pattern, folder_path) :
         kmp = KMP()
         result = kmp.recherche(pattern, folder_path)
-        return result
+        classement = Classement()
+        return classement.sortBooks([i.nameFile for i in result])
 
     def getFilteredBooksIndex(self, pattern, folder_path) :
         indexing = Indexing() 
         result = indexing.recherche(pattern.lower(), folder_path)
-        return result
+        classement = Classement()
+        return classement.sortBooks([i.nameFile for i in result])
 
 
     def getFilteredBooksByTitle(self, pattern, books):
