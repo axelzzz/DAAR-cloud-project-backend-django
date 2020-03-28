@@ -22,6 +22,16 @@ def getBooks(request):
     booksSerializer = BookSerializer(books, many=True)
     return HttpResponse(JSONRenderer().render(booksSerializer.data) )        
     
+def getSuggestion(request):
+    fileName = request.GET['fileName']
+    bookPath = database_path + fileName
+
+    booksSugestion = library.getFilteredSuggestion(bookPath)
+
+    booksSerializer = BookSerializer(booksSugestion, many=True)
+    return HttpResponse(JSONRenderer().render(booksSerializer.data) ) 
+    
+
 def filter(request):
 
     filteredBooks = []

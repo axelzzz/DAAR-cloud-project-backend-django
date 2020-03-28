@@ -46,7 +46,7 @@ class Betweenness():
         
         return G
 
-    def classement(self, threshold, allFiles):
+    def BC(self, threshold, allFiles):
 
         G = self.createGraph(allFiles, threshold)
 

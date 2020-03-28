@@ -6,6 +6,7 @@ from .kmp import KMP
 from .regex import Regex
 from .betweenness import Betweenness
 from .pagerank import PageRank
+from .suggestion import Suggestion
 
 class Book(models.Model):
 
@@ -87,6 +88,13 @@ class Library(models.Model):
         print(pagerank.pageRankDumpingFactor(vectorInit, matrix, 20, 0.85))
         """
         return self.books        
+
+
+    def getFilteredSuggestion(self, bookPath):
+        suggestion = Suggestion()
+        result = suggestion.neighborsList(bookPath)
+        return result
+        
 
     def getFilteredBooksRegexp(self, pattern, folder_path) :
         regex = Regex()
