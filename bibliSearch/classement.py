@@ -14,7 +14,7 @@ class Classement():
         for book in books:
             for l in (str1):
                 livre_bc = l.split(',')
-                if (livre_bc[0]=="PPPP1664\\"+book):
+                if (livre_bc[0]=="PPPP1664/"+book):
                     indexBC.append(float(livre_bc[1]))
                     break
 
@@ -28,7 +28,7 @@ class Classement():
         for book in books:
             for l in (str1):
                 livre_bc = l.split(',')
-                if (livre_bc[0]=="PPPP1664\\"+book):
+                if (livre_bc[0]=="PPPP1664/"+book):
                     indexPR.append(float(livre_bc[1]))
                     break
         """
@@ -44,6 +44,6 @@ class Classement():
         result = []
         for b in l:
             result.append(bibliSearch.models.Book("bibliSearch/static/PPPP1664/"+b))
-        
+                
         return result
 

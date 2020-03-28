@@ -5,7 +5,7 @@ import re
 class Suggestion():
 
     def neighborsList(self, bookPath):
-        bookPath = "PPPP1664\\"+bookPath
+        bookPath = "PPPP1664/"+bookPath
         fileIndexBCPath = "bibliSearch/static/indice_BC.txt"
         result = []
 
