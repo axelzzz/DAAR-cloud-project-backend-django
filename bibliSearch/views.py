@@ -22,13 +22,13 @@ def getBooks(request):
     booksSerializer = BookSerializer(books, many=True)
     return HttpResponse(JSONRenderer().render(booksSerializer.data) )        
     
-def getSuggestion(request):
-    fileName = request.GET['fileName']
+def getSuggestions(request):
+    fileName = request.GET['nameFile']
     bookPath = database_path + fileName
 
-    booksSugestion = library.getFilteredSuggestion(bookPath)
+    bookSuggestions = library.getFilteredSuggestions(bookPath)
 
-    booksSerializer = BookSerializer(booksSugestion, many=True)
+    booksSerializer = BookSerializer(bookSuggestions, many=True)
     return HttpResponse(JSONRenderer().render(booksSerializer.data) ) 
     
 

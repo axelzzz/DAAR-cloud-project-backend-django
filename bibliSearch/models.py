@@ -90,7 +90,7 @@ class Library(models.Model):
         return self.books        
 
 
-    def getFilteredSuggestion(self, bookPath):
+    def getFilteredSuggestions(self, bookPath):
         suggestion = Suggestion()
         result = suggestion.neighborsList(bookPath)
         return result
