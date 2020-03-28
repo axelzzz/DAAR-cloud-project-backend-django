@@ -94,6 +94,7 @@ class Library(models.Model):
     def getFilteredSuggestions(self, bookPath):
         suggestion = Suggestion()
         result = suggestion.neighborsList(bookPath)
+        print(result)
         return result
         
 

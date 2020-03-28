@@ -5,6 +5,7 @@ import re
 class Suggestion():
 
     def neighborsList(self, bookPath):
+        print("AAAAAAAAAAAAAAAAA")
         fileIndexBCPath = "bibliSearch/static/indice_BC.txt"
         result = []
         with open(fileIndexBCPath,'r',encoding='UTF-8') as file:
