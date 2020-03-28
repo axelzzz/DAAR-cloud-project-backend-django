@@ -24,9 +24,8 @@ def getBooks(request):
     
 def getSuggestions(request):
     fileName = request.GET['nameFile']
-    bookPath = database_path + fileName
-    print ("AAAAAAAAAAAAAAAAAAAAA")
-    bookSuggestions = library.getFilteredSuggestions(bookPath)
+    
+    bookSuggestions = library.getFilteredSuggestions(fileName)
 
     booksSerializer = BookSerializer(bookSuggestions, many=True)
     return HttpResponse(JSONRenderer().render(booksSerializer.data) ) 

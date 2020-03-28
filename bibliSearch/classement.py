@@ -41,7 +41,6 @@ class Classement():
         booksSorded = sorted(tmp, key=lambda d: d[1], reverse=True)
 
         l = [i[0] for i in booksSorded]
-
         result = []
         for b in l:
             result.append(bibliSearch.models.Book("bibliSearch/static/PPPP1664/"+b))

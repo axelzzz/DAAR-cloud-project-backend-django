@@ -94,7 +94,6 @@ class Library(models.Model):
     def getFilteredSuggestions(self, bookPath):
         suggestion = Suggestion()
         result = suggestion.neighborsList(bookPath)
-        print("getFilteredSuggestions result : ",result)
         return result
         
 
@@ -102,20 +101,20 @@ class Library(models.Model):
         regex = Regex()
         result = regex.recherche(pattern, folder_path)
         classement = Classement()
-        return classement.sortBooks([i.nameFile for i in result])
+        return classement.sortBooks(result)
     
 
     def getFilteredBooksKMP(self, pattern, folder_path) :
         kmp = KMP()
         result = kmp.recherche(pattern, folder_path)
         classement = Classement()
-        return classement.sortBooks([i.nameFile for i in result])
+        return classement.sortBooks(result)
 
     def getFilteredBooksIndex(self, pattern, folder_path) :
         indexing = Indexing() 
         result = indexing.recherche(pattern.lower(), folder_path)
         classement = Classement()
-        return classement.sortBooks([i.nameFile for i in result])
+        return classement.sortBooks(result)
 
 
     def getFilteredBooksByTitle(self, pattern, books):

@@ -12,7 +12,8 @@ class Regex():
                 lines=re.split('\n', file.read())
                 for line in lines :
                     if re.compile(pattern) .search(line):
-                        result.append(bibliSearch.models.Book(file_path))
+                        #result.append(bibliSearch.models.Book(file_path))
+                        result.append(filename)
                         break
 
         return result

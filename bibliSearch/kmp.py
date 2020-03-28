@@ -12,7 +12,9 @@ class KMP():
             current_file = open(file_path, mode="r",encoding="UTF-8")
 
             if(self.match(pattern, current_file)==True):
-                result.append(bibliSearch.models.Book(file_path))
+                #result.append(bibliSearch.models.Book(file_path))
+                result.append(filename)
+                
 
         return result
 

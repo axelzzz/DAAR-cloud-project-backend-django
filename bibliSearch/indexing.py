@@ -15,7 +15,8 @@ class Indexing():
             current_index = open(index_path, mode="r",encoding="UTF-8")
 
             if(self.match(pattern, current_index)):
-                result.append(bibliSearch.models.Book(file_path))
+                #result.append(bibliSearch.models.Book(file_path))
+                result.append(filename)
 
         return result
 
