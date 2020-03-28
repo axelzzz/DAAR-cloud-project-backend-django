@@ -12,7 +12,7 @@ from .classement import Classement
 class Book(models.Model):
 
     def __init__(self, filepath) :
-        self.bookFile = open(filepath, "r")
+        self.bookFile = open(filepath,mode="r",encoding="UTF-8")
         self.nameFile = os.path.basename(self.bookFile.name)
         self.author = "Unknown"
         self.title = "No title"
@@ -94,7 +94,7 @@ class Library(models.Model):
     def getFilteredSuggestions(self, bookPath):
         suggestion = Suggestion()
         result = suggestion.neighborsList(bookPath)
-        print(result)
+        print("getFilteredSuggestions result : ",result)
         return result
         
 
@@ -102,6 +102,7 @@ class Library(models.Model):
         regex = Regex()
         result = regex.recherche(pattern, folder_path)
         #return result
+        print ("BBBBBBBBBBB")
         classement = Classement()
         return classement.sortBooks(result)
     

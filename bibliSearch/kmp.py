@@ -9,7 +9,7 @@ class KMP():
         for filename in os.listdir(folder_path):
 
             file_path = folder_path+"/"+filename
-            current_file = open(file_path, "r")
+            current_file = open(file_path, mode="r",encoding="UTF-8")
 
             if(self.match(pattern, current_file)==True):
                 result.append(bibliSearch.models.Book(file_path))

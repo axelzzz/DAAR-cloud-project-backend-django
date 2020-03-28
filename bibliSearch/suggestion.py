@@ -5,11 +5,12 @@ import re
 class Suggestion():
 
     def neighborsList(self, bookPath):
-        print("AAAAAAAAAAAAAAAAA")
+        print("neighborsList : ", bookPath)
         fileIndexBCPath = "bibliSearch/static/indice_BC.txt"
         result = []
         with open(fileIndexBCPath,'r',encoding='UTF-8') as file:
             str1=re.split(';', file.read())
+            print("str1[0] : ", str1[0])
             for i,l in enumerate(str1):
                 livre_bc = l.split(',')
                 if (livre_bc[0]==bookPath):
@@ -26,6 +27,7 @@ class Suggestion():
                         result.append(str1[i].split(',')[0])
                         result.append(str1[i+1].split(',')[0])  
 
+        
         return result
 
 

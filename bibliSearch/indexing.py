@@ -11,8 +11,8 @@ class Indexing():
 
             file_path = folder_path+"/"+filename
             index_path = self.database_index_path+"/"+filename
-            current_file = open(file_path, "r")
-            current_index = open(index_path, "r")
+            current_file = open(file_path, mode="r",encoding="UTF-8")
+            current_index = open(index_path, mode="r",encoding="UTF-8")
 
             if(self.match(pattern, current_index)):
                 result.append(bibliSearch.models.Book(file_path))
