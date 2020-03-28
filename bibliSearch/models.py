@@ -7,6 +7,7 @@ from .regex import Regex
 from .betweenness import Betweenness
 from .pagerank import PageRank
 from .suggestion import Suggestion
+from .classement import Classement
 
 class Book(models.Model):
 
@@ -99,24 +100,20 @@ class Library(models.Model):
     def getFilteredBooksRegexp(self, pattern, folder_path) :
         regex = Regex()
         result = regex.recherche(pattern, folder_path)
-        return result
-        #betweenness = Betweenness()
-        #return betweenness.classement(0.75, result)
+        #return result
+        classement = Classement()
+        return classement.sortBooks(result)
     
 
     def getFilteredBooksKMP(self, pattern, folder_path) :
         kmp = KMP()
         result = kmp.recherche(pattern, folder_path)
         return result
-        #betweenness = Betweenness()
-        #return betweenness.classement(0.75, result)
 
     def getFilteredBooksIndex(self, pattern, folder_path) :
         indexing = Indexing() 
         result = indexing.recherche(pattern.lower(), folder_path)
         return result
-        #betweenness = Betweenness()
-        #return betweenness.classement(0.75, result)
 
 
     def getFilteredBooksByTitle(self, pattern, books):
