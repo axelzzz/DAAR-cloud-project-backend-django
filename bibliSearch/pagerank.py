@@ -44,7 +44,7 @@ class PageRank():
         #pour chaque page, calcul du pagerank
         for i in range(0, len(ranks)):
             for j in range(0, len(links[0])):
-                if(i!=j and links[i][j]):
+                if(i!=j and links[i][j] == 1):
                     if(sum[i] > 0):
                         ranking[j] += ranks[i] / sum[i]
 
