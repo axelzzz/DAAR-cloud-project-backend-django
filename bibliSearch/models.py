@@ -97,24 +97,38 @@ class Library(models.Model):
         return result
         
 
-    def getFilteredBooksRegexp(self, pattern, folder_path) :
+    def getFilteredBooksRegexp(self, pattern, folder_path, betweenness, pagerank, mix) :
         regex = Regex()
         result = regex.recherche(pattern, folder_path)
+#        if(not betweenness and not pagerank and not mix):
+#            return result
+#        else:
         classement = Classement()
-        return classement.sortBooks(result)
+        return classement.sortBooks(result, betweenness, pagerank, mix)
     
 
-    def getFilteredBooksKMP(self, pattern, folder_path) :
+    def getFilteredBooksKMP(self, pattern, folder_path, betweenness, pagerank, mix) :
         kmp = KMP()
         result = kmp.recherche(pattern, folder_path)
+#        if(not betweenness and not pagerank and not mix):
+#            return result
+#        else:
         classement = Classement()
-        return classement.sortBooks(result)
+        return classement.sortBooks(result, betweenness, pagerank, mix)
 
-    def getFilteredBooksIndex(self, pattern, folder_path) :
+    def getFilteredBooksIndex(self, pattern, folder_path, betweenness, pagerank, mix) :
         indexing = Indexing() 
         result = indexing.recherche(pattern.lower(), folder_path)
+#        if(not betweenness and not pagerank and not mix):
+#            print("NO INDEXCENTRALITY")
+#            print("ICII ",result)
+#            return result
+#        else:
         classement = Classement()
-        return classement.sortBooks(result)
+#            print("YES INDEXCENTRALITY")
+        return classement.sortBooks(result, betweenness, pagerank, mix)
+#            print("ICII ",result)
+#            return result
 
 
     def getFilteredBooksByTitle(self, pattern, books):

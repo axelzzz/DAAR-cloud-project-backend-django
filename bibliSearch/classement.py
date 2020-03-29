@@ -4,7 +4,7 @@ import re
 
 class Classement():
 
-    def sortBooks(self, books):
+    def sortBooks(self, books, betweenness, pagerank, mix):
         indexBC = []
         fileIndexBCPath = "bibliSearch/static/indice_BC.txt"
 

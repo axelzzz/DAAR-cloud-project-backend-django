@@ -41,6 +41,9 @@ def filter(request):
     isSearchByReleaseDate = request.GET['isSearchByReleaseDate']
     isSearchByPostingDate = request.GET['isSearchByPostingDate']
     isSearchByLanguage = request.GET['isSearchByLanguage']
+    isBetweenness = request.GET['betweenness']
+    isPageRank = request.GET['pagerank']
+    isMix = request.GET['mix']
 
     if(isSearchByTitle == "false"):
         isSearchByTitle = False
@@ -67,6 +70,22 @@ def filter(request):
     else:
         isSearchByLanguage = True
 
+    if(isBetweenness == "false"):
+        isBetweenness = False
+    else:
+        isBetweenness = True
+    
+    if(isPageRank == "false"):
+        isPageRank = False
+    else:
+        isPageRank = True
+
+    if(isMix == "false"):
+        isMix = False
+    else:
+        isMix = True
+
+
 
     if(isSearchByTitle or isSearchByAuthor or isSearchByPostingDate or isSearchByReleaseDate or isSearchByLanguage):     
         patterns = pattern.split(" ")
@@ -88,13 +107,13 @@ def filter(request):
                 filteredBooks.extend(library.getFilteredBooksByLanguage(pattern, books))  
            
     elif('*' in pattern or '.' in pattern or '|' in pattern or '(' in pattern or ')' in pattern) :
-        filteredBooks = library.getFilteredBooksRegexp(pattern, database_path)
+        filteredBooks = library.getFilteredBooksRegexp(pattern, database_path, isBetweenness, isPageRank, isMix)
 
     elif( len(pattern.split()) > 1 ) :
-        filteredBooks = library.getFilteredBooksKMP(pattern, database_path)    
+        filteredBooks = library.getFilteredBooksKMP(pattern, database_path, isBetweenness, isPageRank, isMix)    
         
     else :
-        filteredBooks = library.getFilteredBooksIndex(pattern, database_path)  
+        filteredBooks = library.getFilteredBooksIndex(pattern, database_path, isBetweenness, isPageRank, isMix)  
             
     booksSerializer = BookSerializer(filteredBooks, many=True)    
     return HttpResponse(JSONRenderer().render(booksSerializer.data) )              
