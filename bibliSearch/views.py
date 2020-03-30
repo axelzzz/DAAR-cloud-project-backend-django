@@ -110,7 +110,8 @@ def filter(request):
         filteredBooks = library.getFilteredBooksRegexp(pattern, database_path, isBetweenness, isPageRank, isMix)
 
     elif( len(pattern.split()) > 1 ) :
-        filteredBooks = library.getFilteredBooksKMP(pattern, database_path, isBetweenness, isPageRank, isMix)    
+        #filteredBooks = library.getFilteredBooksKMP(pattern, database_path, isBetweenness, isPageRank, isMix)    
+        filteredBooks = library.getFilteredBooksUnion(pattern, database_path, isBetweenness, isPageRank, isMix)    
         
     else :
         filteredBooks = library.getFilteredBooksIndex(pattern, database_path, isBetweenness, isPageRank, isMix)  

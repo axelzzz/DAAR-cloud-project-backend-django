@@ -107,6 +107,19 @@ class Library(models.Model):
         return classement.sortBooks(result, betweenness, pagerank, mix)
     
 
+    def getFilteredBooksUnion(self, pattern, folder_path, betweenness, pagerank, mix) :
+        l = pattern.split()
+        result = []
+        indexing = Indexing() 
+        for p in l:
+            tmp = indexing.recherche(p.lower(), folder_path)
+            for t in tmp:
+                if t not in result:
+                    result.append(t)
+
+        classement = Classement()
+        return classement.sortBooks(result, betweenness, pagerank, mix)
+
     def getFilteredBooksKMP(self, pattern, folder_path, betweenness, pagerank, mix) :
         kmp = KMP()
         result = kmp.recherche(pattern, folder_path)
