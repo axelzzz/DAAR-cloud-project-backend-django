@@ -106,7 +106,7 @@ def filter(request):
             if(isSearchByLanguage) :
                 filteredBooks.extend(library.getFilteredBooksByLanguage(pattern, books))  
            
-    elif('*' in pattern or '.' in pattern or '|' in pattern or '(' in pattern or ')' in pattern) :
+    elif('*' in pattern or '+' in pattern or '.' in pattern or '|' in pattern or '(' in pattern or ')' in pattern or '-' in pattern or '[' in pattern or ']' in pattern) :
         filteredBooks = library.getFilteredBooksRegexp(pattern, database_path, isBetweenness, isPageRank, isMix)
 
     elif( len(pattern.split()) > 1 ) :
