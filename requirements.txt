@@ -53,7 +53,7 @@ hashID==3.1.4
 hpack==3.0.0
 html5lib==1.0.1
 httpie==2.0.0
-httplib2==0.14.0
+httplib2==0.19.0
 hyperframe==5.2.0
 idna==2.8
 impacket==0.9.20
