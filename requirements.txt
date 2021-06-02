@@ -167,7 +167,7 @@ traitlets==4.3.3
 typed-ast==1.4.1
 unicodecsv==0.14.1
 uritemplate==3.0.1
-urllib3==1.25.8
+urllib3==1.26.5
 urwid==2.0.1
 virtualenv==20.0.13
 wafw00f==2.1.0
