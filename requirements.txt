@@ -101,7 +101,7 @@ patator==0.7
 pefile==2019.4.18
 pexpect==4.6.0
 pickleshare==0.7.5
-Pillow==6.2.2
+Pillow==9.0.0
 plecost==1.1.2
 plotly==4.4.1
 pluginbase==1.0.0
