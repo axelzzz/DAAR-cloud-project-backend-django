@@ -94,7 +94,7 @@ networkx==2.4
 numpy==1.17.4
 olefile==0.46
 packaging==20.1
-paramiko==2.6.0
+paramiko==2.10.1
 parso==0.5.2
 passlib==1.7.2
 patator==0.7
